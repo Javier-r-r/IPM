@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>App de Notas</title>
+</head>
+<body>
+    <header>
+        <h1>Left to Do counter: <span id="taskCounter" role="status" aria-live="polite">0</span></h1>
+        <input type="checkbox" id="markAllCompleted" onclick="markAllAsCompleted()" aria-label="Marcar todas como completadas"> Marcar todas como completadas
+    </header>
+    
+    <main class="container">
+        <!-- Agrega el desplegable con tres opciones -->
+        <label for="categorySelect">Tareas para ver:</label>
+        <br>
+        <select id="categorySelect" aria-label="Filtrar tareas por categoría">
+            <option value="Todas">Todas</option>
+            <option value="Acabadas">Acabadas</option>
+            <option value="Sin acabar">Sin acabar</option>
+        </select>
+        
+        <div id="detailsModal" class="modal" role="dialog" aria-labelledby="detailsModalLabel">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()" aria-label="Cerrar">&times;</span>
+                <div id="detailsContainer" aria-live="assertive" aria-atomic="true">
+                    <!-- Contenido de detalles se mostrará aquí -->
+                </div>
+            </div>
+        </div>
+        
+        <section>
+            <ul id="noteList" role="list">
+                <!-- Aquí se agregarán dinámicamente las notas -->
+            </ul>
+        </section>
+        
+        <button type="button" onclick="deleteAllNotes()" aria-label="Eliminar Todas las Tareas">Eliminar Todas las Tareas</button>
+        
+        <section>
+            <br>
+            <button type="button" onclick="deleteCompletedNotes()" aria-label="Eliminar Tareas Completadas">Eliminar Tareas Completadas</button>
+        </section>
+        <br>
+        <button type="button" class="add-button" onclick="nuevaTarea()" aria-label="Agregar Nueva Tarea"> + </button>
+        <div id="tarea" style="display: none;">
+            <section>
+                <form id="noteForm" role="form">
+                    <label for="titleInput">Título</label>
+                    <br>
+                    <input type="text" id="titleInput" placeholder="Escribe el título" aria-required="true">
+                    <br>
+                    <label for="shortDescriptionInput">Descripción breve</label>
+                    <br>
+                    <input type="text" id="shortDescriptionInput" placeholder="Escribe una descripción breve">
+                    <br>
+                    <label for="descriptionInput">Descripción completa</label>
+                    <br>
+                    <textarea id="descriptionInput" placeholder="Escribe la descripción completa"></textarea>
+                    <br>
+                    <!-- Nuevo campo para la fecha límite -->
+                    <label for="deadlineInput">Fecha Límite (opcional)</label>
+                    <br>
+                    <input type="date" id="deadlineInput">
+                    <br>
+                    <br>
+                    <button type="button" onclick="addNote()">Agregar Nota</button>
+                </form>
+            </section>
+        </div>
+    </main>
+  
+    <script src="script.js"></script>
+</body>
+</html>
